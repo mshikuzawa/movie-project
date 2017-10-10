@@ -7,6 +7,23 @@ import {Observable} from "rxjs/Observable";
 export class MovieService {
     hey: any = "Hello World";
     apikey: string = "ba889e7d273d321de65b5bd71a96a73e";
-    url: string = "https://api.themoviedb.org/3/movie/550?api_key=ba889e7d273d321de65b5bd71a96a73e"
+    url: string = "https://api.themoviedb.org/3/search/movie?api_key=ba889e7d273d321de65b5bd71a96a73e&query=";
+    testUrl: string = "http://mari-fall-2017-phortonssf.c9users.io:8081/test";
+
+  constructor(public http: Http) { 
+  }
     
+     getData(endpoint) {
+        return this.http.get(this.url + endpoint)
+            .map(res => res.json())
+  }
+  
+   postData(postInfo){
+     return this.http.post(this.testUrl, postInfo)  
+    .map(data => data.json())
+ }
+
 }
+
+
+

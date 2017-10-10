@@ -1,20 +1,50 @@
+<md-toolbar color= black> What's your favorite movie?</md-toolbar> 
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class = "wrapper">
+    
+    <div class = "container">
+        <div id="left-col">
+            <h3> Movies I Love</h3>
+            
+            <!--searchbar to search for movie titles-->
+                   <md-form-field class = "example-full-width"> Search for Movie
+                      <input [(ngModel)]="title" mdInput placeholder="" 
+                       (keyup.enter)="search(title)"> 
+                    </md-form-field>
+                    
+            <!--display search results -->
+             <div *ngIf = "searchResults.length > 0">
+                    <md-card id = "result-card" *ngFor = 'let title of searchResults' (click)= addFav(title)> 
+                        {{Data.results[0].title}} <br> 
+                    </md-card>
+            </div>
+            <div id ="blank">
+            </div>
+        <div id = "Fav-link">
+            <a href = "#favorites"> Go to Favorites List </a>
+        </div>
+        </div>
+        
 
+
+
+    
+    <div id="cen-col">
+        <h3> Movie Information </h3>
+    <!--<md-card id = "movie-card" *ngFor = 'let city of searchResults'> -->
+    <!--{{ Data.results[0].title }} <br> -->
+    <!--</md-card>-->
+    </div>
+    
+
+    <div id="movie-sel"> 
+        <h3 id = "favorites" >My Favorites!</h3>
+            <md-card id = "favMovies" *ngFor = "let title of favList; let i = index">     
+                {{i + 1 }}: {{ Data.results[0].title }} <br> 
+                <button md-mini-fab id = button (click) = delFav(index);> Del
+                </button>
+           </md-card>
+    </div>
+    
+</div>
+</div>
