@@ -3,6 +3,7 @@
 
 .wrapper{
     background-image:url("https://ak7.picdn.net/shutterstock/videos/14040227/thumb/1.jpg?i10c=img");
+    height: 150vh;
 }
 
 .container{
@@ -93,4 +94,9 @@ a:active{
     grid-row: 2/3;
     color: white;
     background: black;
+}
+
+.example-full-width{
+    color: black;
+    background: white;
 }

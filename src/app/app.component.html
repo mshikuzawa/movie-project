@@ -8,14 +8,14 @@
             
             <!--searchbar to search for movie titles-->
                    <md-form-field class = "example-full-width"> Search for Movie
-                      <input [(ngModel)]="title" mdInput placeholder="" 
-                       (keyup.enter)="search(title)"> 
+                      <input  [(ngModel)]="title" mdInput placeholder="" 
+                       (keyup.enter)="search()"> 
                     </md-form-field>
                     
             <!--display search results -->
              <div *ngIf = "searchResults.length > 0">
                     <md-card id = "result-card" *ngFor = 'let title of searchResults' (click)= addFav(title)> 
-                        {{Data.results[0].title}} <br> 
+                        {{title.results[0].title}} <br> 
                     </md-card>
             </div>
             <div id ="blank">
@@ -40,7 +40,7 @@
     <div id="movie-sel"> 
         <h3 id = "favorites" >My Favorites!</h3>
             <md-card id = "favMovies" *ngFor = "let title of favList; let i = index">     
-                {{i + 1 }}: {{ Data.results[0].title }} <br> 
+                {{i + 1 }}: {{ title.results[0].title }} <br> 
                 <button md-mini-fab id = button (click) = delFav(index);> Del
                 </button>
            </md-card>

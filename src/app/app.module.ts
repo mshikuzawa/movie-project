@@ -11,10 +11,14 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, 
          NgModel,
          ReactiveFormsModule } from '@angular/forms';
+import {UserService } from './user.service';
+import {RouterModule} from '@angular/router';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, 
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +29,18 @@ import { FormsModule,
     MdCardModule,
     FormsModule, 
     ReactiveFormsModule, 
-    MdButtonModule
+    MdButtonModule,
+    
+    RouterModule.forRoot([
+        {
+            path: 'register',
+            component:RegisterComponent
+        }
+        ])
   ],
-  providers: [MovieService],
+  providers: [MovieService, 
+    UserService, 
+    RegisterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

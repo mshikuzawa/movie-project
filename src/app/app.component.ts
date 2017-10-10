@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MovieService } from './movie.service';
+import {UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,33 +13,32 @@ export class AppComponent {
   favMovies: any [] = [];
   favList: any [] = [];
   searchResults = [];
-  postInfo: {name: "The Departed", releaseDate: 2006};
+  postInfo: {title: "The Departed", releaseDate: 2006};
+  user: any = {
+    firstName: "Matt",
+    lastName: "Dome",
+    email: "matt@gmail.com",
+    password: "hey"
+  };
 
-constructor ( public movie$: MovieService) {
-  
-  //need to pass in what we are putting into the NGmodel on .html
-     
-        movie$.getData(this.title)
-        .subscribe( res => {
-          this.searchResults.push(res);
-            console.log("hits", res);
-        });
-        
-              this.movie$.postData(this.postInfo)
-        .subscribe(
-            data => console.log("hit", data),
-            error => console.log("error", error)
-                    );
-      
+constructor ( public movie$: MovieService, public user$: UserService) {  
       
 }
 
+
+ngOnInit(){
+  this.user$.register(this.user)
+  .subscribe(res => console.log("res", res))
+  
+}
+
+
 //search for a specific movie title
-search(){
+search(title){
       this.movie$.getData(this.title)
         .subscribe( res => {
           this.searchResults.push(res);
-            console.log(res);
+            console.log("Test1", res);
         });
         
         
@@ -47,9 +47,21 @@ search(){
 
 //click to add to favorites
   addFav(title){
-    this.favList.push(title) 
+    this.favList.push(this.title) 
   }
-    
+  
+    delFav(index){
+    this.favList.splice(index, 1)
+  } 
+
+// getData(title: string) {
+//     this.movie$.postData(this.postInfo)
+//       .subscribe(
+//           data => console.log("hit", data),
+//           error => console.log("error", error)
+//     );
+// }
+
     
   //     console.log("title", this.searchResults, title)
   //     if (this.movieInFav(this.favMovies, title)) {
@@ -61,14 +73,14 @@ search(){
   //   this.searchResults = [];
   // }
   
-    movieInFav(array, arrVal){
-    return array.some(movFav => arrVal == movFav)
-  }
+  //   movieInFav(array, arrVal){
+  //   return array.some(movFav => arrVal == movFav)
+  // }
 
-// //delete botton
-//     delFav(index){
-//       this.favList.splice(index, 1)
-//   } 
+// delete bottom
+
+
+      
 
 }
 

@@ -18,10 +18,10 @@ export class MovieService {
             .map(res => res.json())
   }
   
-   postData(postInfo){
-     return this.http.post(this.testUrl, postInfo)  
-    .map(data => data.json())
- }
+//   postData(postInfo){
+//      return this.http.post(this.testUrl, postInfo)  
+//     .map(data => data.json())
+//  }
 
 }
 
