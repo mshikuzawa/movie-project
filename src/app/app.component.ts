@@ -46,13 +46,34 @@ search(title){
 }
 
 //click to add to favorites
-  addFav(title){
+    addFav(title){
     this.favList.push(this.title) 
-  }
+    console.log (this.title)
+}
   
     delFav(index){
     this.favList.splice(index, 1)
   } 
+
+  
+  //   movieInFav(array, arrVal){
+  //   return array.some(movFav => arrVal == movFav)
+  // } 
+  //     console.log("title", this.searchResults, this.title);
+  //     if (this.movieInFav(this.favMovies, this.title)) {
+  //           console.log("check!")
+  //     }
+  //     else {
+  //           this.favList.push(this.title) 
+  //   }
+  //   this.favList = [];
+  // }
+  
+
+
+
+// delete botton  
+
 
 // getData(title: string) {
 //     this.movie$.postData(this.postInfo)
@@ -61,25 +82,6 @@ search(title){
 //           error => console.log("error", error)
 //     );
 // }
-
-    
-  //     console.log("title", this.searchResults, title)
-  //     if (this.movieInFav(this.favMovies, title)) {
-  //           console.log("check!")
-  //     }
-  //     else {
-  //           this.favList.push(title) 
-  //   }
-  //   this.searchResults = [];
-  // }
-  
-  //   movieInFav(array, arrVal){
-  //   return array.some(movFav => arrVal == movFav)
-  // }
-
-// delete bottom
-
-
       
 
 }

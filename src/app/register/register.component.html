@@ -1,15 +1,25 @@
-'use strict';
+<div  >
 
-module.exports = function(Appuser) {
-        Appuser.observe('after save', function(ctx, next) {
-        if(ctx.isNewInstance === true) {
-            var instance = ctx.instance;
-            instance.createAccessToken(1209600000, function(err, response) { 
-                if(err === null) ctx.instance["token"] = response.id;
-                next();
-            });
-        }else {
-             next();
-        }
-    });
-};
+  
+   <form class="container" #registerForm="ngForm" (ngSubmit)="signupForm(registerForm)" novalidate>
+      <md-form-field>
+        <input placeholder= "Email" name="email" [(ngModel)]="user.email" type="email" mdInput required>
+      </md-form-field>
+ 
+      <md-form-field>
+        <input placeholder="First Name" name="firstName" [(ngModel)]="user.firstName" type="string" mdInput required >
+      </md-form-field>
+
+      <md-form-field>
+        <input placeholder="Last Name" name="lastName" [(ngModel)]="user.lastName" type="string" mdInput required >
+      </md-form-field>
+
+      <md-form-field>
+        <input placeholder="Password" name="password" [(ngModel)]="user.password" type="password" mdInput required >
+      </md-form-field>
+ 
+      <button type="submit" class="btn btn-success">Submit</button>
+ 
+    </form>
+</div>
+

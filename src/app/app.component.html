@@ -1,21 +1,23 @@
-<md-toolbar color= black> What's your favorite movie?</md-toolbar> 
-<!--The content below is only a placeholder and can be replaced.-->
+<md-toolbar color= black> Favorite Movie App
+<!--how do you add the login to the toolbar? -->
+<router-outlet> </router-outlet>
+</md-toolbar> 
+
 <div class = "wrapper">
     
     <div class = "container">
         <div id="left-col">
             <h3> Movies I Love</h3>
-            
             <!--searchbar to search for movie titles-->
                    <md-form-field class = "example-full-width"> Search for Movie
                       <input  [(ngModel)]="title" mdInput placeholder="" 
                        (keyup.enter)="search()"> 
                     </md-form-field>
                     
-            <!--display search results -->
+            <!--display search results, must call for the variable declared in the ngForloop ex title -->
              <div *ngIf = "searchResults.length > 0">
                     <md-card id = "result-card" *ngFor = 'let title of searchResults' (click)= addFav(title)> 
-                        {{title.results[0].title}} <br> 
+                        {{title.results[0].title}} <br> Release Date: {{ title.results[0].release_date }}
                     </md-card>
             </div>
             <div id ="blank">
@@ -31,16 +33,16 @@
     
     <div id="cen-col">
         <h3> Movie Information </h3>
-    <!--<md-card id = "movie-card" *ngFor = 'let city of searchResults'> -->
-    <!--{{ Data.results[0].title }} <br> -->
-    <!--</md-card>-->
+    <md-card id = "movie-card" *ngFor = 'let title of searchResults'> 
+    <h4>{{title.results[0].title}} </h4> Release Date: {{ title.results[0].release_date }} <br> Summary: {{ title.results[0].overview}} <br> Rating: {{ title.results[0].vote_average }}
+    </md-card>
     </div>
     
 
     <div id="movie-sel"> 
-        <h3 id = "favorites" >My Favorites!</h3>
+        <h3 id = "favorites" > My Favorites! </h3>
             <md-card id = "favMovies" *ngFor = "let title of favList; let i = index">     
-                {{i + 1 }}: {{ title.results[0].title }} <br> 
+                {{i + 1 }}: {{ title.results[0].title }} <br> Release Date: {{ title.results[0].release_date }}
                 <button md-mini-fab id = button (click) = delFav(index);> Del
                 </button>
            </md-card>
