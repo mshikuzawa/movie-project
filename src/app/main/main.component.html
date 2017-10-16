@@ -1,0 +1,50 @@
+<div class = "wrapper">
+    
+    <div class = "container">
+        <div id="left-col">
+            <h3> Movies I Love</h3>
+            <!--searchbar to search for movie titles-->
+                   <md-form-field class = "example-full-width"> Search for Movie
+                      <input  [(ngModel)]="title" mdInput placeholder="" 
+                       (keyup.enter)="search()"> 
+                    </md-form-field>
+            <div id ="blank">
+            </div>
+        <div id = "Fav-link">
+            <a href="" ng-click="logout()" target="_self">Log Out</a>
+        </div>
+        </div>
+        
+
+    <div id="cen-col">
+        <h3> Movie Informdion </h3>
+<!--display search results, must call for the variable declared in the ngForloop ex title -->
+    <div *ngIf="searchResults">
+        <md-card class = "movie-card" *ngFor = 'let movie of searchResults'> 
+            <md-card-header>
+                <div md-card-avatar class="header-title">
+                    <md-card-title>{{ movie.title }}</md-card-title>
+                  </div>
+          </md-card-header>
+          <md-card-content>
+                <p><img src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}"/>
+     <br> Release Date: {{ movie.release_date }} <br> Summary: {{ movie.overview }} <br> Rating: {{ movie.vote_average }}
+               </p>
+    <button md-mini-fab id="button" (click)= addFav(movie);> Add </button>
+          </md-card-content>
+        </md-card>
+    </div>
+</div>
+    
+
+    <div id="movie-sel"> 
+        <h3 id="favorites" > My Favorites! </h3>
+            <md-card id="favMovies" *ngFor="let movie of favList">     
+                {{ movie.title }} <br> Release Date: {{ movie.release_date }}
+                <button md-mini-fab id="button" (click)=delFav(index);> Del
+                </button>
+           </md-card>
+    </div>
+    
+</div>
+</div>

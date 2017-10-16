@@ -1,10 +1,21 @@
-<div  >
 
-  
-   <form class="container" #registerForm="ngForm" (ngSubmit)="signupForm(registerForm)" novalidate>
+ <!-- The i tag element is from material in order to use icons, you need to put 
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ in your index.html file. Icons can be found here https://material.io/icons/
+  -->
+  <i  routerLink="/" class="material-icons" >arrow_back</i>
+
+
+<div>
+
+
+
+   <form class="container-form" #registerForm="ngForm" (ngSubmit)="signupForm(registerForm)" novalidate>
+     
       <md-form-field>
         <input placeholder= "Email" name="email" [(ngModel)]="user.email" type="email" mdInput required>
       </md-form-field>
+ 
  
       <md-form-field>
         <input placeholder="First Name" name="firstName" [(ngModel)]="user.firstName" type="string" mdInput required >
@@ -18,8 +29,7 @@
         <input placeholder="Password" name="password" [(ngModel)]="user.password" type="password" mdInput required >
       </md-form-field>
  
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button md-raised-button color="primary" type="submit" class="btn btn-success">Submit</button>
  
     </form>
 </div>
-

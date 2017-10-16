@@ -14,11 +14,13 @@ import { FormsModule,
 import {UserService } from './user.service';
 import {RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    RegisterComponent
+    RegisterComponent, LoginComponent, MainComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +35,16 @@ import { RegisterComponent } from './register/register.component';
     
     RouterModule.forRoot([
         {
+            path: '',
+            component: LoginComponent
+        },
+        {
             path: 'register',
             component:RegisterComponent
+        },
+        {
+            path:'main',
+            component: MainComponent
         }
         ])
   ],
