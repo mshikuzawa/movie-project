@@ -10,14 +10,13 @@
                     </md-form-field>
             <div id ="blank">
             </div>
-        <div id = "Fav-link">
+            <a [routerLink]="['/main']" fragment="favorites">Go To Favorites</a> <br>
             <a href="" ng-click="logout()" target="_self">Log Out</a>
-        </div>
         </div>
         
 
     <div id="cen-col">
-        <h3> Movie Informdion </h3>
+        <h3> Movie Information </h3>
 <!--display search results, must call for the variable declared in the ngForloop ex title -->
     <div *ngIf="searchResults">
         <md-card class = "movie-card" *ngFor = 'let movie of searchResults'> 
@@ -41,6 +40,9 @@
         <h3 id="favorites" > My Favorites! </h3>
             <md-card id="favMovies" *ngFor="let movie of favList">     
                 {{ movie.title }} <br> Release Date: {{ movie.release_date }}
+                <div id = "pic">
+                <img src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}"/>
+                </div>
                 <button md-mini-fab id="button" (click)=delFav(index);> Del
                 </button>
            </md-card>

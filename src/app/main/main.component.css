@@ -6,7 +6,7 @@
     height: 150vh;
 }
 
-.container{c
+.container{
     font-family: Arial, Helvetica, sans-serif;
     display:grid;
     margin-left: 150px;
@@ -49,13 +49,7 @@
     border: 5px white solid;
 }
 
-.header-title{
-    width: 350px;
-    font-weight: bold;
-    
-}
-
-.movie-card{
+#movie-card{
     margin-top: 20px;
 }
 

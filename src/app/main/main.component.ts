@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import {UserService } from '../user.service';
+import {FavoritesService} from '../favorites.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +11,8 @@ import {UserService } from '../user.service';
 })
 
 export class MainComponent implements OnInit {
+  private fragment: string;
+
   title: string;
   favMovies: any [] = [];
   favList: any [] = [];
@@ -20,15 +24,22 @@ export class MainComponent implements OnInit {
     email: "matt@gmail.com",
     password: "hey"
   };
+  object: any = {};
 
-constructor ( public movie$: MovieService, public user$: UserService) {  
+constructor ( public movie$: MovieService, public user$: UserService, public favorites$: FavoritesService, private route: ActivatedRoute) {  
       
 }
 
+  ngOnInit() {
+    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
+  }
 
-ngOnInit(){
+  ngAfterViewInit(): void {
+    try {
+      document.querySelector('#' + this.fragment).scrollIntoView();
+    } catch (e) { }
+  }
   
-}
 
 
 //search for a specific movie title
@@ -66,17 +77,41 @@ search(title){
 //   }
 // }
 
+
     addFav(searchResults){
+      
+      this.object.title = searchResults.title
+      
+      ///on the left is the way the properties are in loopback  on the right grab what you need
+      this.object.releaseDate = searchResults.release_date
+      
+      
+      
       console.log("title", searchResults)
-      if (this.movieInFav(this.favMovies, this.title)) {
-            console.log("check!")
-            console.log(this.movieInFav)
-            console.log(this.favMovies)
+      if (!this.movieInFav(this.favMovies, this.title)) {
+        
+         // this.favList.push(searchResults)
+            // console.log(this.favList)
+            this.favorites$.saveFavorites(this.object)
+                .subscribe( res => {
+      /*succesful response from server is always the first arrow function in subscribe method.
+      anything we want to do with resonse we do here.
+      */
+       //push into our favorites array on successful response save so we can display.
+      this.favList.push(searchResults)
+      console.log("res", res)})
+        
+        
+        
+        
       }
       else {
-            this.favList.push(searchResults)
-            console.log(this.favList)
-     }
+           
+            console.log("check my favorite movie")
+          
+            console.log(this.favMovies)
+  }
+    
      this.searchResults = [];
   }
 
@@ -84,6 +119,8 @@ search(title){
     return array.some(movieFav => arrVal == movieFav)
   }
   
+   
+   
     delFav(index){
     this.favList.splice(index, 1)
   } 

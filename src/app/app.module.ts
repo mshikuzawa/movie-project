@@ -13,6 +13,7 @@ import { FormsModule,
          ReactiveFormsModule } from '@angular/forms';
 import {UserService } from './user.service';
 import {RouterModule} from '@angular/router';
+import {FavoritesService} from './favorites.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -50,6 +51,7 @@ import { MainComponent } from './main/main.component';
   ],
   providers: [MovieService, 
     UserService, 
+    FavoritesService,
     RegisterComponent],
   bootstrap: [AppComponent]
 })
